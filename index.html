@@ -47,6 +47,16 @@
         </li>
       </ol>
       </p>
+
+      <p><br><b>Функция type()</b> используется для определения типа объекта. Также type() может быть использована для создания новых типов (классов) динамически. Пример:</p>
+      <code>
+        &nbsp;&nbsp;&nbsp;&nbsp;MyClass = type('MyClass', (object,), {'attr': 42})<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;obj = MyClass()<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(obj.attr)  # 42<br>
+      </code>
+
+      <p><br><b>Приведение типов (или преобразование типов)</b> — это процесс преобразования значения из одного типа данных в другой. Python предоставляет несколько встроенных функций для приведения типов
+      <br>list(), tuple(), set(), dict(), str(), int(), float(), bool()</p>
     </div>
   </details>
 
