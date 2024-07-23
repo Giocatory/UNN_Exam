@@ -105,9 +105,49 @@
   <details class="details">
     <summary class="details__title">Коллекции данных: типы tuple, list, dict,set.</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p>Python предоставляет несколько встроенных типов коллекций, которые позволяют хранить и управлять группами данных. <br>К основным коллекциям данных относятся:<br></p>
+      <ol>
+        <li>
+          <p><b>Кортежи (tuple)</b> - Кортежи представляют собой <b>неизменяемые</b> последовательности. Это означает, что после создания кортежа его элементы нельзя изменять, добавлять или удалять.</p>
+          <ul><b>Основные операции</b>
+            <li>Конкатенация: <code>new_tuple = my_tuple + another_tuple</code></li>
+            <li>Повторение: <code>repeated_tuple = my_tuple * 3</code></li>
+            <li>Проверка на наличие элемента: <code>is_in = 2 in my_tuple</code></li>
+          </ul>
+        </li>
+        <li>
+          <p><b>Списки (list)</b> - Списки представляют собой <b>изменяемые</b> последовательности. Это означает, что после создания списка его элементы можно изменять, добавлять или удалять.</p>
+          <ul><b>Основные операции</b>
+            <li>Добавление элемента: <code>my_list.append(4)</code></li>
+            <li>Вставка элемента: <code>my_list.insert(1, 10)</code></li>
+            <li>Удаление элемента по значению: <code>my_list.remove(2)</code></li>
+            <li>Удаление элемента по индексу: <code>del my_list[0]</code> или <code>my_list.pop(0)</code></li>
+            <li>Конкатенация: <code>new_list = my_list + another_list</code></li>
+            <li>Повторение: repeated_list = <code>my_list * 3</code></li>
+            <li>Проверка на наличие элемента: <code>is_in = 2 in my_list</code></li>
+          </ul>
+        </li>
+        <li>
+          <p><b>Словари (dict)</b> - Словари представляют собой коллекции пар ключ-значение. Ключи в словаре должны быть уникальными и неизменяемыми (например, строки, числа), а значения могут быть любыми.</p>
+          <ul><b>Основные операции</b>
+            <li>Добавление пары ключ-значение: <code>my_dict["gender"] = "male"</code></li>
+            <li>Удаление пары ключ-значение: <code>del my_dict["age"]</code></li>
+            <li>Проверка на наличие ключа: <code>is_in = "name" in my_dict</code></li>
+            <li>Получение значения по ключу с значением по умолчанию: <code>value = my_dict.get("address", "unknown")</code></li>
+          </ul>
+        </li>
+        <li>
+          <p><b>Множества (set)</b> - Множества представляют собой неупорядоченные коллекции уникальных элементов. Они используются для выполнения математических операций над множествами, таких как объединение, пересечение и разность.</p>
+          <ul><b>Основные операции</b>
+            <li>Добавление элемента: <code>my_set.add(4)</code></li>
+            <li>Удаление элемента: <code>my_set.remove(3)</code></li>
+            <li>Объединение множеств: <code>union_set = my_set | another_set</code></li>
+            <li>Пересечение множеств: <code>intersection_set = my_set & another_set</code></li>
+            <li>Разность множеств: <code>difference_set = my_set - another_set</code></li>
+            <li>Проверка на наличие элемента: <code>is_in = 2 in my_set</code></li>
+          </ul>
+        </li>
+      </ol>
     </div>
   </details>
 
