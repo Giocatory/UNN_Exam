@@ -256,9 +256,74 @@
   <details class="details">
     <summary class="details__title">Библиотека Numpy. Индексация. Срезы.</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p><b>NumPy (Numerical Python)</b> — это фундаментальная библиотека для научных вычислений в Python, которая предоставляет поддержку для массивов и матриц, а также высокоуровневые математические функции для работы с ними. <b>Все элементы в массиве NumPy должны быть однородными.</b></p>
+      <p><b>Массив</b> — это центральная структура данных библиотеки NumPy. Массив представляет собой сетку значений и содержит информацию о необработанных данных, о том, как найти элемент и как его интерпретировать. Он имеет сетку элементов, которые можно индексировать различными способами . Все элементы одного типа, называемые массивом "dtype".</p>
+      <br>
+      <ol><b>Основные особенности NumPy</b>
+        <li><b>Массивы (ndarray):</b> Основная структура данных в NumPy, которая позволяет работать с многомерными массивами.</li>
+        <li><b>Высокопроизводительные операции:</b> NumPy оптимизирован для выполнения математических операций.</li>
+        <li><b>Интеграция:</b> NumPy хорошо интегрируется с другими библиотеками, такими как SciPy, Matplotlib и pandas.</li>
+      </ol>
+      <br>
+      <p>
+        arr = np.array([1, 2, 3, 4, 5]) <span style="color: rgb(4, 93, 14); font-weight: bold;"># Создание массива из списка</span><br>
+        zeros = np.zeros((2, 3))  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 2x3 массив нулей</span><br>
+        ones = np.ones((2, 3))  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 2x3 массив единиц</span><br>
+        eye = np.eye(3)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 3x3 единичная матрица</span><br>
+        linspace = np.linspace(0, 1, 5)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 5 значений от 0 до 1 включительно</span><br>
+        random_array = np.random.rand(2, 3)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 2x3 массив случайных значений</span><br>
+      </p>
+      <br>
+      <p><b>Проверка типа данных: </b><span style="color: rgb(4, 93, 14); font-weight: bold;">print(arr.dtype)  # float32</span></p>
+      <br>
+      <table><tbody><tr><th data-colwidth="117" width="117"><p><strong>Тип данных</strong></p></th><th><p><strong>Описание</strong></p></th></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>bool</code></p></td><td><p align="left">Булевы значения (<code>True</code>&nbsp;или&nbsp;<code>False</code>) хранятся в виде байтов</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>int</code></p></td><td><p align="left">Тип по умолчанию — целое число (то же, что&nbsp;<code>long</code>&nbsp;в C; обычно&nbsp;<code>int64</code>&nbsp;или&nbsp;<code>int32</code>)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>intc</code></p></td><td><p align="left">Идентичный&nbsp;<code>int</code>&nbsp;в C (обычно&nbsp;<code>int32</code>&nbsp;или&nbsp;<code>int64</code>)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>intp</code></p></td><td><p align="left">Целое число для использования в качестве индексов (то же, что и&nbsp;<code>size_t</code>&nbsp;в C, обычно&nbsp;<code>int32</code>&nbsp;или&nbsp;<code>int64</code>)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>int8</code></p></td><td><p align="left">Байт (от — 128 до 127)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>int16</code></p></td><td><p align="left">Целое число (от -32768 до 32767)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>int32</code></p></td><td><p align="left">Целое число (от -2147483648 до 2147483647)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>int64</code></p></td><td><p align="left">Целое число (от -9223372036854775808 до 9223372036854775807)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>uint8</code></p></td><td><p align="left">Целое число без знака (от 0 до 255)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>uint16</code></p></td><td><p align="left">Целое число без знака (от 0 до 65535)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>uint32</code></p></td><td><p align="left">Целое число без знака (от 0 до 4294967295)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>uint64</code></p></td><td><p align="left">Целое число без знака (от 0 до 18446744073709551615)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>float</code></p></td><td><p align="left">Обозначение&nbsp;<code>float64</code></p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>float16</code></p></td><td><p align="left">Число с плавающей точкой половинной точности; бит на знак, 5-битная экспонента, 10-битная мантисса</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>float32</code></p></td><td><p align="left">Число с плавающей точкой единичной точности; бит на знак, 8-битная экспонента, 23-битная мантисса</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>float64</code></p></td><td><p align="left">Число с плавающей точкой двойной точности; бит на знак, 11-битная экспонента, 52-битная мантисса</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>complex</code></p></td><td><p align="left">Обозначение complex128</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>complex64</code></p></td><td><p align="left">Комплексное число, представленное двумя 32-битными&nbsp;<code>float</code>&nbsp;(с действительной и мнимой частями)</p></td></tr><tr><td data-colwidth="117" width="117"><p align="left"><code>complex128</code></p></td><td><p align="left">Комплексное число, представленное двумя 64-битными&nbsp;<code>float</code>&nbsp;(с действительной и мнимой частями)</p></td></tr></tbody></table>      
+      <br>
+      <p>
+        <b>Размерности массивов - </b>Массивы в NumPy могут иметь произвольное количество измерений. Размерности массива можно проверить с помощью атрибутов .ndim, .shape и .size.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;arr = np.array([[1, 2, 3], [4, 5, 6]])<br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(arr.ndim)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 2 (двумерный массив)</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(arr.shape)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># (2, 3) (2 строки, 3 столбца)</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(arr.size)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># 6 (всего элементов)</span><br>
+      </p>
+      <br>
+      <p>
+        <b>Основные методы и операции</b><br>
+        Арифметические операции - NumPy поддерживает векторизованные операции, которые выполняются над массивами элемент-wise <br>
+        Универсальные функции (ufunc) - NumPy предоставляет множество универсальных функций, таких как np.sqrt, np.exp, np.sin и другие <br>
+        <br><b>Методы для изменения формы массива</b> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;arr = np.array([[1, 2, 3], [4, 5, 6]])<br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(4, 93, 14); font-weight: bold;"># Транспонирование</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(arr.T)  # [[1 4]<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#  [2 5]<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#  [3 6]]<br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(4, 93, 14); font-weight: bold;"># Изменение формы массива</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;reshaped = arr.reshape(3, 2)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(reshaped)  # [[1 2]<br>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#  [3 4]<br>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#  [5 6]]<br>
+      </p>
+      <br>
+      <p>
+        <b>Маскирование</b> - Маскирование позволяет извлекать или изменять элементы массива, соответствующие определенным условиям.<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsparr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])<br>
+        &nbsp;&nbsp;&nbsp;&nbspmask = arr % 2 == 0  <span style="color: rgb(4, 93, 14); font-weight: bold;"># Маска для четных чисел</span><br>
+        &nbsp;&nbsp;&nbsp;&nbspprint(arr[mask])  <span style="color: rgb(4, 93, 14); font-weight: bold;"># [2 4 6 8 10]</span><br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp<span style="color: rgb(4, 93, 14); font-weight: bold;"># Изменение элементов по маске</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsparr[mask] = -1<br>
+        &nbsp;&nbsp;&nbsp;&nbspprint(arr)  <span style="color: rgb(4, 93, 14); font-weight: bold;"># [ 1 -1  3 -1  5 -1  7 -1  9 -1]</span>
+      </p>
+      <p>Также очень много полезных методов: сортировка, максимальное, минимальное, среднее, сумма и многие другие</p>
+      <br><br>
+      <p>
+        <b>Срезы (Slicing) в NumPy</b> - Срезы в NumPy позволяют работать с подмассивами и являются мощным инструментом для обработки данных. Они обеспечивают гибкость и производительность, необходимые для эффективного анализа и манипуляции данными.<br>
+        Синтаксис срезов аналогичен срезам в стандартных списках Python и имеет следующий формат: <br>
+        <span style="color: rgb(4, 93, 14); font-weight: bold;">arr[start:stop:step]</span><br><br>
+        <b>Срезы многомерных массивов</b> - Срезы в многомерных массивах работают аналогично, но позволяют задавать срезы для каждого измерения. (если двумерный - то, отдельно для строк, отдельно для столбцов)
+      </p>
     </div>
   </details>
 
