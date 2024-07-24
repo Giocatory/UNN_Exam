@@ -640,9 +640,110 @@
   <details class="details">
     <summary class="details__title">Библиотека Pandas. Базовые методы.</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p><b>Pandas</b> — это мощная и широко используемая библиотека Python для анализа данных. Она предоставляет высокоуровневые структуры данных и функции, предназначенные для упрощения работы с метко-ориентированными данными, включая табличные данные, временные ряды и другие формы данных</p>
+      <br>
+      <ol><b>Основные структуры данных Pandas</b>
+        <li><b>Series:</b> Одномерный массив, который может содержать любые данные (интегрированные с индексами).</li>
+        <li><b>DataFrame:</b> Двумерная таблица с метками строк и столбцов, представляющая собой наиболее часто используемую структуру данных в Pandas.</li>
+      </ol>
+      <br>
+      <p><b>Базовые методы Pandas</b></p><br>
+      <ol><b>Методы для работы с DataFrame</b>
+        <li>
+          <b>Чтение данных</b>
+          <ul>
+            <li>pd.read_csv(): Чтение данных из CSV файла.</li>
+            <li>pd.read_excel(): Чтение данных из Excel файла.</li>
+            <li>pd.read_json(): Чтение данных из JSON файла.</li>
+          </ul>
+        </li>
+        <li>
+          <b>Запись данных</b>
+          <ul>
+            <li>df.to_csv(): Запись DataFrame в CSV файл.</li>
+            <li>df.to_excel(): Запись DataFrame в Excel файл.</li>
+            <li>df.to_json(): Запись DataFrame в JSON файл.</li>
+          </ul>
+        </li>
+        <li>
+          <b>Информация о DataFrame</b>
+          <ul>
+            <li>df.head(n): Возвращает первые n строк DataFrame.</li>
+            <li>df.tail(n): Возвращает последние n строк DataFrame.</li>
+            <li>df.info(): Отображает краткую информацию о DataFrame, включая индекс, тип данных и ненулевые значения.</li>
+            <li>df.describe(): Выводит основные статистические характеристики DataFrame.</li>
+          </ul>
+        </li>
+        <li>
+          <b>Индексация и фильтрация</b>
+          <ul>
+            <li>Индексация по метке <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df['Name'])  # Возвращает Series <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df[['Name', 'Age']])  # Возвращает DataFrame
+            </li>
+            <li>Логическая индексация <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adults = df[df['Age'] > 30]
+            </li>
+            <li>Локатор по метке <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df.loc[0])  # Первая строка DataFrame <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df.loc[:, 'Name'])  # Все строки столбца 'Name'
+            </li>
+            <li>Локатор по позиции <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df.iloc[0])  # Первая строка DataFrame <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(df.iloc[:, 0])  # Все строки первого столбца
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Добавление и удаление данных</b>
+          <ul>
+            <li>Добавление нового столбца <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df['Salary'] = [50000, 60000, 70000]</li>
+            <li>Удаление столбца <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.drop('Salary', axis=1, inplace=True)</li>
+            <li>Удаление строки <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.drop(1, axis=0, inplace=True)  # Удаляет вторую строку</li>
+          </ul>
+        </li>
+        <li>
+          <b>Обработка отсутствующих данных</b>
+          <ul>
+            <li>Проверка наличия пропущенных данных <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.isna()</li>
+            <li>Удаление пропущенных данных <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.dropna(inplace=True)</li>
+            <li>Заполнение пропущенных данных <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;df.fillna(0, inplace=True)</li>
+          </ul>
+        </li>
+        <li>
+          <b>Группировка данных</b>
+          <ul>
+            <li>Группировка и агрегирование <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;grouped = df.groupby('City') <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(grouped['Age'].mean())  # Средний возраст по городам
+            </li>
+          </ul>
+        </li>
+        <br><br>
+        <ol><b><h3>Методы для работы с Series</h3></b>
+          <li>
+            <b>Базовые операции</b>
+            <ul>
+              <li>Получение значения по индексу <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s[0])  # Первое значение</li>
+              <li>Фильтрация <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s[s > 2])  # Все значения больше 2</li>
+              <li>Операции с индексами <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.index = ['a', 'b', 'c', 'd', 'e']</li>
+            </ul>
+          </li>
+          <li>
+            <b>Статистические методы</b>
+            <ul>
+              <li>
+                Основные статистические характеристики <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s.mean())  # Среднее значение <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s.sum())  # Сумма всех значений <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s.max())  # Максимальное значение <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s.min())  # Минимальное значение <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(s.std())  # Стандартное отклонение
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </ol>
     </div>
   </details>
 
