@@ -395,9 +395,124 @@
   <details class="details">
     <summary class="details__title">Библиотека Matplotlib. Методы .plot(), .bar(), .hist().</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p>Matplotlib — это одна из самых популярных библиотек для визуализации данных в Python. Она позволяет создавать разнообразные графики и диаграммы, обеспечивая широкий набор инструментов для настройки их внешнего вида. В этом ответе мы подробно рассмотрим методы .plot(), .bar(), и .hist().</p>
+      <p>Библиотека Matplotlib и её методы .plot(), .bar(), и .hist() предоставляют мощные инструменты для создания разнообразных графиков и диаграмм. Эти методы позволяют визуализировать данные в различных формах, что является важной частью анализа данных. Подробные примеры и возможности настройки позволяют создавать визуализации, соответствующие конкретным потребностям и требованиям анализа.</p>
+      <br>
+      <ul>
+        <li>
+          <p><b>Метод .plot()</b> - используется для создания линейных графиков. Он может отображать одномерные массивы данных и их зависимости друг от друга.</p><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;import matplotlib.pyplot as plt <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;import numpy as np <br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Создание данных</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;x = np.linspace(0, 10, 100)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;y = np.sin(x) <br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Построение графика</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.plot(x, y)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.title('Simple Line Plot')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.xlabel('x')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.ylabel('sin(x)')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.show()
+          </code>
+          <br><br>
+          <p><b>Метод .plot() поддерживает множество параметров для настройки внешнего вида графика.</b></p><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Построение графика с настройками</b> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.plot(x, y, label='sin(x)', color='blue', linestyle='--', linewidth=2, marker='o') <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.title('Styled Line Plot') <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.xlabel('x') <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.ylabel('sin(x)') <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.legend() <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.grid(True) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.show()
+          </code>
+          <br><br>
+        </li>
+        <li>
+          <p><b>Метод .bar()</b> - Метод .bar() используется для построения столбчатых диаграмм, которые представляют данные в виде прямоугольников, где длина каждого прямоугольника пропорциональна значению.</p>
+          <br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Создание данных</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;categories = ['A', 'B', 'C', 'D']<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;values = [3, 7, 5, 9]<br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Построение столбчатой диаграммы</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.bar(categories, values)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.title('Simple Bar Plot')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.xlabel('Categories')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.ylabel('Values')<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;plt.show()
+          </code>
+          <br><br>
+          <p><b>Сгруппированные и сложенные столбчатые диаграммы</b> - Для создания более сложных столбчатых диаграмм, таких как сгруппированные и сложенные, используются дополнительные настройки.</p>
+          <ol>
+            <li>
+              Сгруппированная столбчатая диаграмма<br><br>
+              <code>
+                &nbsp;&nbsp;&nbsp;&nbsp;<b># Создание данных</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;bar_width = 0.35 <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;index = np.arange(len(categories)) <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;values2 = [2, 6, 4, 8] <br>
+                <br>              
+                &nbsp;&nbsp;&nbsp;&nbsp;<b># Построение сгруппированной столбчатой диаграммы </b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.bar(index, values, bar_width, label='Group 1', color='b') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.bar(index + bar_width, values2, bar_width, label='Group 2', color='r') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.xlabel('Categories') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.ylabel('Values') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.title('Grouped Bar Plot') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.xticks(index + bar_width / 2, categories) <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.legend() <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.show()
+              </code><br><br>
+            </li>
+            <li>
+              Сложенная столбчатая диаграмма <br><br>
+              <code>
+                &nbsp;&nbsp;&nbsp;&nbsp;<b># Построение сложенной столбчатой диаграммы</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.bar(categories, values, label='Group 1', color='b') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.bar(categories, values2, bottom=values, label='Group 2', color='r') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.xlabel('Categories') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.ylabel('Values') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.title('Stacked Bar Plot') <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.legend() <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;plt.show()
+              </code>
+            </li>
+          </ol><br><br>
+        </li>
+        <li>
+          <p><b>Метод .hist()</b> - Метод .hist() используется для создания гистограмм, которые отображают распределение данных. Гистограмма разбивает данные на интервалы (бинсы) и показывает количество данных в каждом интервале.</p>
+          <br>
+          <p>Аргументы и параметры</p>
+              <ol>
+                <li>
+                  data <br>
+                  Описание: Массив числовых данных, который будет использоваться для построения гистограммы. Тип: array-like (например, список, массив NumPy и т.д.)
+                </li>
+                <li>
+                  bins <br>
+                  Количество интервалов (бинсов), на которые будут разделены данные. Бинсы определяют, как данные будут группироваться. Тип: int или sequence
+                </li>
+                <li>
+                  density <br>
+                  Описание: Если True, то гистограмма будет нормализована так, что площадь под гистограммой будет равна 1 (показывает плотность вероятности). Тип: bool
+                </li>
+                <li>
+                  color <br>
+                  Описание: Цвет прямоугольников гистограммы. Тип: str или sequence
+                </li>
+                <li>
+                  edgecolor <br>
+                  Описание: Цвет границ прямоугольников. Тип: str или sequence
+                </li>
+                <li>
+                  alpha <br>
+                  Описание: Прозрачность прямоугольников гистограммы. Значение должно быть в диапазоне от 0 (полностью прозрачный) до 1 (полностью непрозрачный). Тип: float
+                </li>
+              </ol>
+        </li>
+      </ul>
     </div>
   </details>
 
