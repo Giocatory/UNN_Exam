@@ -331,9 +331,63 @@
   <details class="details">
     <summary class="details__title">Библиотека Numpy. Модуль random.</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p>Модуль random в NumPy предоставляет широкий набор инструментов для генерации случайных чисел, создания массивов случайных чисел и выполнения различных операций, связанных со случайностью. Эти функции являются важным компонентом для научных вычислений, моделирования, статистического анализа и других приложений.</p>
+      <p>Функции модуля random могут быть использованы для выполнения различных статистических операций и моделирования. Например, генерация данных для моделирования или тестирования алгоритмов.</p>
+      <br>
+      <p>Модуль random в NumPy предоставляет мощные инструменты для генерации случайных чисел и выполнения операций, связанных со случайностью. Его использование включает генерацию случайных чисел с различными распределениями, создание массивов случайных чисел, фиксирование начального состояния генератора для воспроизводимости результатов, перемешивание массивов и выборку случайных элементов. Это делает его неотъемлемой частью экосистемы научных вычислений и анализа данных</p><br>
+      <br><p><b>Основные функции модуля random (Генерация случайных чисел)</b></p><br>
+      <ol>
+        <li>
+          <b>Случайные числа из равномерного распределения -</b> Функция rand генерирует случайные числа с равномерным распределением в диапазоне от 0 до 1.<br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;random_numbers = np.random.rand(5)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(random_numbers)  <b># Пример вывода: [0.69354293 0.82465574 0.54501156 0.43842065 0.82866434]</b>
+          </code><br>
+        </li>
+        <li>
+          Можно создавать массивы любой размерности, передавая нужные размеры в качестве аргументов: <br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;random_matrix = np.random.rand(2, 3)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(random_matrix)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Пример вывода:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># [[0.27937511 0.71589188 0.79248445]</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b>#  [0.48757711 0.92242775 0.68666152]]</b>
+          </code><br>
+        </li>
+        <li>
+          <b>Случайные целые числа -</b> Функция randint генерирует случайные целые числа в заданном диапазоне. <br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;random_integers = np.random.randint(1, 10, size=5) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(random_integers)  <b># Пример вывода: [3 6 9 2 7]</b>
+          </code>
+          <br>
+          <p>Размерность массива случайных целых чисел можно задать с помощью параметра size.</p>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;random_integer_matrix = np.random.randint(1, 100, size=(2, 3)) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(random_integer_matrix) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># Пример вывода:</b> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># [[54 29 95]</b> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b>#  [70 12  5]]</b>
+          </code>
+        </li>
+        <li>
+          <p><b>Случайные числа с заданным распределением -</b> Функция uniform генерирует случайные числа с равномерным распределением в заданном диапазоне.</p>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;random_uniform_numbers = np.random.uniform(low=1.0, high=5.0, size=5) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(random_uniform_numbers)  <b># Пример вывода: [2.3196554  1.24903198 4.49587546 3.77022684 4.02202499]</b>
+          </code>
+        </li>
+        <li>
+          <p><b>Выборка случайных элементов -</b> метод choice достает из нашей последовательности случайное значение</p>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;lst = ['красный', "зеленый", "синий"] <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print('random:', random.choice(lst)) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print('numpy:', np.random.choice(lst, size=2, replace=False, <span style="color: rebeccapurple;">p=[0.25, 0.05, 0.7]</span>)) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># random: синий</b> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<b># numpy: ['синий' 'красный']</b>
+          </code>
+        </li>
+      </ol>
     </div>
   </details>
 
