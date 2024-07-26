@@ -850,9 +850,110 @@
   <details class="details">
     <summary class="details__title">Fast API. Создание и запуск приложения с помощью данного фреймворка</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p>FastAPI — это современный, высокопроизводительный веб-фреймворк для создания API с Python 3.6+ на основе стандартов OpenAPI и JSON Schema. Он разработан для быстрого написания кода и создания API, которые могут работать с высокой скоростью и эффективностью.</p>
+      <br>
+      <ol><b>Основные преимущества FastAPI:</b>
+        <li><b>Высокая производительность:</b> Сравнима с производительностью NodeJS и Go (благодаря Starlette и Pydantic).</li>
+        <li><b>Автоматическая документация:</b> Генерирует интерактивную документацию для API с помощью Swagger UI и ReDoc.</li>
+        <li><b>Типизация: </b>Полная поддержка аннотаций типов Python, что помогает в создании надежного и проверенного кода</li>
+        <li><b>Простота использования:</b> Быстрое и простое создание API.</li>
+      </ol>
+      <br>
+      <ol><b>Создание базового приложения</b>
+        <li>
+          Для начала необходимо установить FastAPI и Uvicorn, ASGI сервер для запуска приложения: <b><code>pip install fastapi "uvicorn[standard]"</code></b>
+        </li>
+        <li>
+          Импорт необходимых модулей: <b><code>from fastapi import FastAPI</code></b>
+        </li>
+        <li>
+          Создание экземпляра FastAPI: <b><code>app = FastAPI()</code></b>
+        </li>
+        <li>
+          Определение маршрутов (endpoints) <br>
+          Маршруты определяются с помощью декораторов. Декораторы указывают, какой HTTP метод используется для маршрута (GET, POST, PUT, DELETE и т.д.) и путь к маршруту. <br><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: orange">@app.get("/")</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def read_root(): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"Hello": "World"} <br>
+          </code><br><p>Этот код создает простой маршрут, который возвращает JSON-объект {"Hello": "World"} при обращении к корневому URL (/).</p>
+        </li>
+        <li>
+          Запуск приложения осуществляется с помощью Uvicorn: <b><code>uvicorn main:app --reload --port 8000 --host 0.0.0.0 &</code></b><br>
+          <p>Здесь main — это имя файла Python (без .py), app — это экземпляр FastAPI, а --reload включает режим перезагрузки, чтобы изменения в коде автоматически обновлялись.</p>
+        </li>
+      </ol>
+      <br><br><p><b>Пример: Создание более сложного API</b></p><br>
+      <ol>
+        <li>
+          <b>Определение маршрутов с параметрами</b> <br><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;from typing import Optional <br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@app.get("/items/{item_id}") <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def read_item(item_id: int, q: Optional[str] = None): <br>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"item_id": item_id, "q": q}
+          </code>
+          <br><br><p>Этот маршрут принимает путь параметра item_id и необязательный параметр запроса q.</p><br>
+        </li>
+        <li>
+          <b>Обработка POST-запросов с телом запроса</b> (Для обработки данных в теле запроса мы используем Pydantic модели.) <br><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;from pydantic import BaseModel <br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;class Item(BaseModel): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: str <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description: Optional[str] = None <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;price: float <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tax: Optional[float] = None <br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@app.post("/items/") <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def create_item(item: Item): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return item
+          </code>
+          <br><br><p>Здесь мы определяем Pydantic модель Item и используем её в маршруте для обработки POST-запроса.</p><br>
+        </li>
+      </ol>
+      <br>
+      <ol><b>Работа с запросами и ответами</b>
+        <li>
+          <b>Параметры пути и запроса</b> - FastAPI автоматически парсит параметры пути и запросов и проверяет их типы. <br><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;@app.get("/users/{user_id}") <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def read_user(user_id: int, name: Optional[str] = None): <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"user_id": user_id, "name": name}
+          </code><br><br>
+        </li>
+        <li>
+          <b>Валидация и обработка данных</b> - Использование Pydantic моделей обеспечивает валидацию данных и автоматическую документацию<br><br>
+          <code>
+            &nbsp;&nbsp;&nbsp;&nbsp;class User(BaseModel): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username: str <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: str <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;age: Optional[int] = None <br>
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;@app.post("/users/") <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;def create_user(user: User): <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return user
+          </code>
+        </li>
+      </ol>
+      <br>
+      <ol><b>Автоматическая документация</b> - FastAPI автоматически генерирует документацию для всех маршрутов. Вы можете получить доступ к ней по следующим URL:
+        <li>Swagger UI: <b><code>http://127.0.0.1:8000/docs</code></b></li>
+        <li>ReDoc: <b><code>http://127.0.0.1:8000/redoc</code></b></li>
+      </ol><br><br>
+      <p><b>Асинхронное программирование -</b> FastAPI поддерживает асинхронное программирование с помощью async def.</p>
+      <br>
+      <code>
+        &nbsp;&nbsp;&nbsp;&nbsp;import asyncio <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;@app.get("/async") <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;async def get_async(): <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;await asyncio.sleep(1) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {"message": "Hello, async world!"}
+      </code><br><br>
+      <p>FastAPI — мощный инструмент для создания API с Python, который обеспечивает высокую производительность и удобство использования. Он предлагает множество возможностей для работы с запросами, ответами, асинхронным программированием, а также предоставляет автоматическую документацию и валидацию данных с помощью Pydantic. Быстрый старт с FastAPI позволяет разработчикам быстро и эффективно создавать API, сохраняя при этом высокие стандарты качества и производительности.</p>
     </div>
   </details>
 
