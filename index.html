@@ -2268,9 +2268,167 @@
   <details class="details">
     <summary class="details__title">Способы сохранения/загрузки модели нейронной сети.</summary>
     <div class="details__content">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum omnis beatae itaque! Maxime consequuntur
-        architecto, voluptatibus iste aliquid quaerat dolores, culpa repellendus optio omnis rem saepe quisquam
-        incidunt, numquam molestias?</p>
+      <p>Сохранение и загрузка моделей нейронных сетей — это ключевые этапы в цикле разработки, развертывания и эксплуатации моделей машинного обучения. Эти процессы позволяют сохранять результаты долгого и ресурсоемкого обучения, что значительно экономит время и вычислительные ресурсы. Существуют различные способы сохранения и загрузки моделей, в зависимости от используемого фреймворка, таких как TensorFlow/Keras и PyTorch. Рассмотрим эти процессы подробнее.</p>
+      <br>
+      <ol><b>Сохранение и загрузка модели в TensorFlow/Keras</b><br>TensorFlow и его высокоуровневое API Keras предоставляют несколько методов для сохранения и загрузки моделей.
+        <li>
+          <b>Сохранение и загрузка всей модели:</b><br>Этот метод сохраняет всю модель целиком, включая её архитектуру, веса и конфигурацию обучения (оптимизатор, функции потерь и метрики)
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>model.save('path_to_my_model') <b># Этот метод создает директорию, в которой сохраняются файлы модели.</b></code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br>
+              <code>
+                from tensorflow.keras.models import load_model <br><br>
+                model = load_model('path_to_my_model')
+              </code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Сохранение и загрузка только весов модели:</b><br>Этот метод сохраняет только веса модели, что позволяет повторно использовать их в любой архитектуре, соответствующей сохраненным весам.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>model.save_weights('path_to_my_weights')</code>
+            </li>
+            <li>
+              <b>Загрузка:</b>
+              <code>model.load_weights('path_to_my_weights')  <b># Для этого способа загрузки необходимо сначала определить архитектуру модели, в которую будут загружены веса.</b></code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Сохранение архитектуры модели:</b><br>Архитектура модели может быть сохранена в формате JSON.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>
+                json_config = model.to_json() <br>
+                with open('model_config.json', 'w') as json_file: <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;json_file.write(json_config)
+              </code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br>
+              <code>
+                from tensorflow.keras.models import model_from_json <br> <br>
+                with open('model_config.json', 'r') as json_file: <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;json_config = json_file.read() <br>
+                model = model_from_json(json_config) <br>
+                model.load_weights('path_to_my_weights')
+              </code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Формат SavedModel:</b><br>SavedModel — это стандартный формат для сохранения моделей в TensorFlow, который поддерживается различными инструментами и средами выполнения.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>model.save('path_to_saved_model', save_format='tf') <b># Этот формат сохраняет модель в виде директории, которая содержит метаданные и веса модели.</b></code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br>
+              <code>
+                from tensorflow.keras.models import load_model <br><br>
+                model = load_model('path_to_saved_model')
+              </code>
+            </li>
+          </ul>
+        </li>
+      </ol><br><br>
+      <ol><b>Сохранение и загрузка модели в PyTorch</b><br>PyTorch предоставляет несколько способов для сохранения и загрузки моделей.
+        <li>
+          <b>Сохранение и загрузка всей модели:</b><br>Сохраняется вся модель, включая её архитектуру и веса.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>torch.save(model, 'model.pth')</code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br>
+              <code>
+                model = torch.load('model.pth')
+                model.eval()  <b># Установка режима оценки</b>
+              </code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Сохранение и загрузка состояния модели:</b><br>Этот метод сохраняет состояние модели, что включает только веса, а не архитектуру.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>torch.save(model.state_dict(), 'model_weights.pth')</code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br><i>В этом случае важно иметь определение класса модели TheModelClass при загрузке весов.</i><br>
+              <code>
+                model = TheModelClass(*args, **kwargs) <br>
+                model.load_state_dict(torch.load('model_weights.pth')) <br>
+                model.eval()  <b># Установка режима оценки</b>
+              </code>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>Сохранение и загрузка состояния оптимизатора:</b><br>Для продолжения обучения модели с сохраненными параметрами оптимизатора.
+          <ul>
+            <li>
+              <b>Сохранение:</b><br>
+              <code>
+                torch.save({ <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;'model_state_dict': model.state_dict(), <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;'optimizer_state_dict': optimizer.state_dict(), <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;'epoch': epoch, <br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;'loss': loss, <br>
+                }, 'checkpoint.pth')
+              </code>
+            </li>
+            <li>
+              <b>Загрузка:</b><br>
+              <code>
+                checkpoint = torch.load('checkpoint.pth') <br>
+                model.load_state_dict(checkpoint['model_state_dict']) <br>
+                optimizer.load_state_dict(checkpoint['optimizer_state_dict']) <br>
+                epoch = checkpoint['epoch'] <br>
+                loss = checkpoint['loss']
+              </code>
+            </li>
+          </ul>
+        </li>
+      </ol><br><br>
+      <ol><b>Рекомендации и лучшие практики</b>
+        <li><b>Версионность моделей:</b>
+          <ul>
+            <li>Хранение различных версий моделей позволяет отслеживать изменения и улучшения.</li>
+          </ul>
+        </li>
+        <li><b>Проверка целостности данных:</b>
+          <ul>
+            <li>Проверка целостности файлов после сохранения и перед загрузкой помогает избежать ошибок.</li>
+          </ul>
+        </li>
+        <li><b>Документация и комментарии:</b>
+          <ul>
+            <li>Ведение подробной документации об экспериментальных настройках и версиях моделей.</li>
+          </ul>
+        </li>
+        <li><b>Автоматизация процесса:</b>
+          <ul>
+            <li>Автоматизация сохранения и загрузки моделей с помощью скриптов для обеспечения непрерывного процесса разработки.</li>
+          </ul>
+        </li>
+        <li><b>Совместимость версий:</b>
+          <ul>
+            <li>Убедитесь, что версии библиотек, используемые для сохранения и загрузки моделей, совместимы, чтобы избежать проблем.</li>
+          </ul>
+        </li>
+      </ol><br>
+      <p>Сохранение и загрузка моделей — это критически важные процессы, которые обеспечивают гибкость и надежность в цикле разработки и эксплуатации моделей машинного обучения. Понимание и правильное использование этих методов позволяет эффективно управлять моделями, улучшая производительность и ускоряя разработку приложений машинного обучения.</p>
     </div>
   </details>
 
